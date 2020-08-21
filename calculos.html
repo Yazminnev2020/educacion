@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Calculo de Potencial hidrico</title>
+        <div id="map"></div>
+        <script  src="Chart.js"></script>
+        <script async defer
+         src="https://maps.googleapis.com/maps/api/
+         js?key=AIzaSyCF8K67-0VZCyZex2YEO-YVB714KnpcF4o&callback=initMap">
+        </script>
+        <script  src="mains.js"></script>
+        <script src="localizacion.js"></script>
+
+    </head>
+    <body>
+      
+        
+        <form action="">
+            <h2>Calculo de Potencial hidrico por Institución</h2> 
+            
+            <h3>dias de consumo mensual</h3> 
+            Mes mayor precipitacion y luego consecutivo acorde al orden de precipitación:
+            <input type="number" id="diasenero" value="31"><br>
+             mes2
+            <input type="number"  id="diasfebrero" value="31">
+             mes3
+            <input type="number"  id="diasmarzo" value="30">
+            mes4
+            <input type="number"  id="diasabril" value="31">
+            mes5
+            <input type="number"  id="diasmayo" value="30">
+            mes6
+            <input type="number"  id="diasjunio" value="30"><br>
+            <br>
+             mes7
+            <input type="number"  id="diasjulio" value="31" >
+             mes8
+            <input type="number"  id="diasago" value="28">
+            mes 9
+            <input type="number"  id="diassep" value="30">
+            mes10
+            <input type="number"  id="diaoctubre" value="31">
+             mes 11
+            <input type="number"  id="dianov" value="31"><br>
+            <br>
+            mes 12
+            <input type="number"  id="diasdiciembre" value="31"><br>
+            <br>
+
+            <h3>Precipitacion Mayor [mm] luego valor consecutivo</h3>
+            Precipitacion  1 :
+            <input type="number" value= 127 id="Penero" >
+            Precipitacion  2 :
+            <input type="number"  value= 92 id="Pfebrero">
+            Precipitacion  3 :
+            <input type="number" value= 102 id="Pmarzo"><br>
+            Precipitacion  4 :
+            <input type="number" value= 90 id="Pabril">
+            Precipitacion  5 :
+            <input type="number" value= 108 id="Pmayo">
+            Precipitacion  6 :
+            <input type="number"  value= 123 id="Pjunio"><br>
+            Precipitacion  7 :
+            <input type="number"  value= 119 id="Pjulio">
+            Precipitacion  8 :
+            <input type="number"  value= 68.3 id="Pago">
+            Precipitacion  9 :
+            <input type="number"   value= 77 id="Psep"><br>
+            Precipitacion  10:
+            <input type="number"  value= 95 id="Poctubre">
+            Precipitacion 11:
+            <input type="number"  value= 119  id="Pnov">
+            Precipitacion 12:
+            <input type="number"    value= 122 id="Pdiciembre"><br>
+            <br>
+
+            <td>  Usuarios</td>   <td><input type="number" value="2140" id="usuarios" name="usuarios"/></td>
+            <td>  dotación</td>   <td><input type="number"  value="20.78" id="dotacion" name="dotacion"/></td>
+            <td>  Area Captación[m^2]</td>   <td><input type="number" value="4424" id="Area" name="Area"/></td>
+            <td>  % oferta para alimentar sanitariosy riego de jardin</td>   
+            <td><input type="number" id="porcentaje" value="25" name="porcentaje"/></td><br>
+            <br>
+            <input type="button" value="Calcular" onclick="alert(suma());"><br>
+       
+           potencial de ahorro 1 [%]:  <p  id="resultado1">resultado1</p>
+           Potencial de ahorro 2 [%]: <p id="resultado2"> resultado2</p>
+           potencial de ahorro 3 [%]: <p id="resultado3"> resultado3</p>
+           potencial de ahorro 4 [%]:<p id="resultado4"> resultado4</p>
+           potencial de ahorro 5 [%]: <p id="resultado5"> resultado5</p>
+           potencial de ahorro 6 [%]: <p id="resultado6"> resultado6</p>
+           potencial de ahorro 7 [%]:  <p id="resultado7"> resultado7</p>
+           potencial de ahorro 8 [%]:<p id="resultado8"> resultado8</p>
+           potencial de ahorro 9 [%]: <p id="resultado9"> resultado9</p>
+           potencial de ahorro 10 [%]: <p id="resultado10"> resultado10</p>
+           potencial de ahorro 11 [%]: <p id="resultado11"> resultado11</p>
+           potencial de ahorro 12 [%]: <p id="resultado12"> resultado12</p>
+           <br>
+           Volumen del tanque [m^3]:  <p  id="resultado13">resultado13</p>
+            <br>
+            <canvas id="myChart" width="300" height="80"></canvas> 
+
+        </form>
+        <script>
+        var suma=function(dato1,dato2,dato3,dato4,dato5,dato6,dato7,dato8,dato9,dato0,dato11,dato12,usuarios,dotacion,porcentaje,area){
+         var dato1=Number(document.getElementById("diasenero").value);
+         var dato2=Number(document.getElementById("diasfebrero").value);
+         var dato3=Number(document.getElementById("diasmarzo").value);
+         var dato4=Number(document.getElementById("diasabril").value);
+         var dato5=Number(document.getElementById("diasmayo").value);
+         var dato6=Number(document.getElementById("diasjunio").value);
+         var dato7=Number(document.getElementById("diasjulio").value);
+         var dato8=Number(document.getElementById("diasago").value);
+         var dato9=Number(document.getElementById("diassep").value);
+         var dato10=Number(document.getElementById("diaoctubre").value);
+         var dato11=Number(document.getElementById("dianov").value);
+         var dato12=Number(document.getElementById("diasdiciembre").value);
+         var usuarios=Number(document.getElementById("usuarios").value);
+         var dotacion=Number(document.getElementById("dotacion").value);
+         var porcentaje=Number(document.getElementById("porcentaje").value);
+         var area=Number(document.getElementById("Area").value);
+         var demanda1= (usuarios*dato1*dotacion*(porcentaje/100))/1000;
+         var demanda2= (usuarios*dato2*dotacion*(porcentaje/100))/1000;
+         var demanda3= (usuarios*dato3*dotacion*(porcentaje/100))/1000;
+         var demanda4= (usuarios*dato4*dotacion*(porcentaje/100))/1000;
+         var demanda5= (usuarios*dato5*dotacion*(porcentaje/100))/1000;
+         var demanda6= (usuarios*dato6*dotacion*(porcentaje/100))/1000;
+         var demanda7= (usuarios*dato7*dotacion*(porcentaje/100))/1000;
+         var demanda8= (usuarios*dato8*dotacion*(porcentaje/100))/1000;
+         var demanda9= (usuarios*dato9*dotacion*(porcentaje/100))/1000;
+         var demanda10= (usuarios*dato10*dotacion*(porcentaje/100))/1000;
+         var demanda11= (usuarios*dato11*dotacion*(porcentaje/100))/1000;
+         var demanda12= (usuarios*dato12*dotacion*(porcentaje/100))/1000;
+         var demandacum1=demanda1;
+         var demanacum2=demanda1+demanda2;
+         var demanacum3=demanda1+demanda2+demanda3;
+         var demanacum4=demanda1+demanda2+demanda3+demanda4;
+         var demanacum5=demanda1+demanda2+demanda3+demanda4+demanda5;
+         var demanacum6=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6;
+         var demanacum7=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6+demanda7;
+         var demanacum8=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6+demanda7+demanda8;
+         var demanacum9=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6+demanda7+demanda8+demanda9;
+         var demanacum10=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6+demanda7+demanda8+demanda9+demanda10;
+         var demanacum11=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6+demanda7+demanda8+demanda9+demanda10+demanda11;
+         var demanacum12=demanda1+demanda2+demanda3+demanda4+demanda5+demanda6+demanda7+demanda8+demanda9+demanda10+demanda11+demanda12;
+         var p1=Number(document.getElementById("Penero").value);
+         var p2=Number(document.getElementById("Pfebrero").value);
+         var p3=Number(document.getElementById("Pmarzo").value);
+         var p4=Number(document.getElementById("Pabril").value);
+         var p5=Number(document.getElementById("Pmayo").value);
+         var p6=Number(document.getElementById("Pjunio").value);
+         var p7=Number(document.getElementById("Pjulio").value);
+         var p8=Number(document.getElementById("Pago").value);
+         var p9=Number(document.getElementById("Psep").value);
+         var p10=Number(document.getElementById("Poctubre").value);
+         var p11=Number(document.getElementById("Pnov").value);
+         var p12=Number(document.getElementById("Pdiciembre").value);
+        var oferta1=(p1*0.8*area)/1000;
+        var oferta2=(p2*0.8*area)/1000;
+        var oferta3=(p3*0.8*area)/1000;
+        var oferta4=(p4*0.8*area)/1000;
+        var oferta5=(p5*0.8*area)/1000;
+        var oferta6=(p6*0.8*area)/1000;
+        var oferta7=(p7*0.8*area)/1000;
+        var oferta8=(p8*0.8*area)/1000;
+        var oferta9=(p9*0.8*area)/1000;
+        var oferta10=(p10*0.8*area)/1000;
+        var oferta11=(p11*0.8*area)/1000;
+        var oferta12=(p12*0.8*area)/1000;
+        var ofertacum1=oferta1;
+        var ofertacum2=oferta1+oferta2;
+         var ofertacum3=oferta1+oferta2+oferta3;
+         var ofertacum4=oferta1+oferta2+oferta3+oferta4;
+         var ofertacum5=oferta1+oferta2+oferta3+oferta4+oferta5;
+         var ofertacum6=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6
+         var ofertacum7=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6+oferta7;
+         var ofertacum8=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6+oferta7+oferta8;
+         var ofertacum9=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6+oferta7+oferta8+oferta9;
+         var ofertacum10=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6+oferta7+oferta8+oferta9+oferta10;
+         var ofertacum11=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6+oferta7+oferta8+oferta9+oferta10+oferta11;
+         var ofertacum12=oferta1+oferta2+oferta3+oferta4+oferta5+oferta6+oferta7+oferta8+oferta9+oferta10+oferta11+oferta12;
+         
+         var Volumen1=ofertacum1-demandacum1;
+         var Volumen2=ofertacum2-demanacum2;
+         var Volumen3=ofertacum3-demanacum3;
+         var Volumen4=ofertacum4-demanacum4;
+         var Volumen5=ofertacum5-demanacum5;
+         var Volumen6=ofertacum6-demanacum6;
+         var Volumen7=ofertacum7-demanacum7;
+         var Volumen8=ofertacum8-demanacum8;
+         var Volumen9=ofertacum9-demanacum9;
+         var Volumen10=ofertacum10-demanacum10;
+         var Volumen11=ofertacum11-demanacum11;
+         var Volumen12=ofertacum12-demanacum12;
+         var vector=new Array (Volumen1,Volumen2,Volumen3,Volumen4,Volumen5,Volumen6,Volumen7,Volumen8,Volumen9,Volumen10,Volumen11,Volumen12);
+         var VolumenTanque=Math.max(...vector);
+         var evaluador =Math.sign(...vector);
+         
+         //if (evaluador>0) //{
+           //document.write ("almacena");
+           // var arreglo=new Array("1");
+         //} else{if  (evaluador>0);
+           // var arreglo2=new Array("2");
+
+         //}
+            
+            
+            
+         var potencial1= 100*(oferta1/demanda1);
+         var potencial2= 100*oferta2/demanda2;
+         var potencial3= 100*oferta3/demanda3;
+         var potencial4= 100*oferta4/demanda4;
+         var potencial5= 100*oferta5/demanda5;
+         var potencial6= 100*oferta6/demanda6;
+         var potencial7= 100*oferta7/demanda7;
+         var potencial8= 100*oferta8/demanda8;
+         var potencial9= 100*oferta9/demanda9;
+         var potencial10= 100*oferta10/demanda10;
+         var potencial11= 100*oferta11/demanda11;
+         var potencial12= 100*oferta12/demanda12;
+            
+         document.getElementById("resultado1").innerHTML=potencial1;
+         document.getElementById("resultado2").innerHTML=potencial2;
+         document.getElementById("resultado3").innerHTML=potencial3;
+         document.getElementById("resultado4").innerHTML=potencial4;
+         document.getElementById("resultado5").innerHTML=potencial5;
+         document.getElementById("resultado6").innerHTML=potencial6;
+         document.getElementById("resultado7").innerHTML=potencial7;
+         document.getElementById("resultado8").innerHTML=potencial8;
+         document.getElementById("resultado9").innerHTML=potencial9;
+         document.getElementById("resultado10").innerHTML=potencial10;
+         document.getElementById("resultado11").innerHTML=potencial11;
+         document.getElementById("resultado12").innerHTML=potencial12;
+         document.getElementById("resultado13").innerHTML=VolumenTanque;
+         
+         
+         var ctx=document.getElementById("myChart").getContext("2d");
+              var myChar=new Chart(ctx,{
+               type:"bar",
+                       data:{
+                   labels: ['mes1','mes2','mes3','mes4','mes5','mes6','mes7','mes8','mes9','mes10','mes11','mes12'],
+                              
+                   datasets:[
+                       {
+                       label:"Volumen de Almacenamiento",
+                      
+                       data:[Volumen1,Volumen2,Volumen3,Volumen4,Volumen5,Volumen6,Volumen7,Volumen8,Volumen9,Volumen10,Volumen11,Volumen12],
+                       backgroundColor:[
+                                   'rgb(66, 134, 244,0.8)',
+                                   'rgb(102, 204, 0,0.9)',
+                                   'rgb(229, 89, 50,0.8)',
+                                   'rgb(210, 89, 50,0.5)',
+                                   'rgb(66, 134, 244,0.8)',
+                                   'rgb(102, 204, 0,0.9)',
+                                   'rgb(66, 134, 244,0.8)',
+                                   'rgb(229, 89, 50,0.7)',
+                                   'rgb(66, 134, 244,0.4)',
+                                   'rgb(66, 134, 244,0.5)',
+                                   'rgb(66, 134, 244,0.6)',
+                                   'rgb(66, 134, 244,0.7)'
+                               ]
+                   }]
+               },
+               options:{
+                   
+                       scales:{
+                           yAxes:[{
+                                   ticks:{
+                                       beginAtZero:true
+                                   }
+                           }],
+                           xAxes: [{
+                             ticks: {
+                               fontSize: 25
+                                    }
+                            }]
+                       }
+                       
+       
+       
+                   }
+                        
+           });
+         
+
+    return  "Volumen del tanque:"+""+ VolumenTanque;
+    
+
+}
+        </script>
+        
+</body>
+    
+   
+      
+</html>
