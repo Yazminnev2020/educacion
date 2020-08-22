@@ -1,6 +1,6 @@
 var json_Precipitacion_Global__Final_2 = {
 "type": "FeatureCollection",
-"name": "Precipitacion_Global__Final_2",
+"name": "Precipitacion_Global__Final_2.png",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "Id": "1", "estacion": "FLORESTA", "ENERO": 72.2275, "FEBRERO": 95.38536585, "MARZO": 129.197561, "ABRIL": 130.3238095, "MAYO": 152.0928571, "JUNIO": 112.7425, "JULIO": 114.2097561, "AGOSTO": 133.865, "SEPTIEMBRE": 118.72825, "OCTUBRE": 159.8860976, "NOVIEMBRE": 127.6853659, "DICIEMBRE": 56.32682927, "PREC TOTAL": 1402.670892, "precini?o": 826.13, "precipni?a": 1647.7, "Pmedia": 116.889241, "Pmax": 159.8860976, "NORTE": 1275918.18, "ESTE": 1105354.7, "ELEVACION": "925" }, "geometry": { "type": "Point", "coordinates": [ -73.123889035550192, 7.09027796645127 ] } },
