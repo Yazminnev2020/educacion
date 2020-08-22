@@ -24,7 +24,7 @@ var lyr_institucionesPrueba1B_1 = new ol.layer.Vector({
                 source:jsonSource_institucionesPrueba1B_1, 
                 style: style_institucionesPrueba1B_1,
                 interactive: true,
-                title: '<img src="styles/legend/institucionesPrueba1B_1.png" /> institucionesPrueba1B'
+                title: '<img src="institucionesPrueba1B_1.png" /> institucionesPrueba1B'
             });
 var format_Precipitacion_Global__Final_2 = new ol.format.GeoJSON();
 var features_Precipitacion_Global__Final_2 = format_Precipitacion_Global__Final_2.readFeatures(json_Precipitacion_Global__Final_2, 
@@ -38,7 +38,7 @@ var lyr_Precipitacion_Global__Final_2 = new ol.layer.Vector({
                 source:jsonSource_Precipitacion_Global__Final_2, 
                 style: style_Precipitacion_Global__Final_2,
                 interactive: true,
-                title: '<img src="styles/legend/Precipitacion_Global__Final_2.png" /> Precipitacion_Global__Final'
+                title: '<img src="Precipitacion_Global__Final_2.png" /> Precipitacion_Global__Final'
             });
 
 lyr_OpenStreetMap_0.setVisible(true);lyr_institucionesPrueba1B_1.setVisible(true);lyr_Precipitacion_Global__Final_2.setVisible(true);
